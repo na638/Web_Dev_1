@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        /* Styling the box element */
+        #box {
+            height: 150px;
+            width: 150px;
+            border: 2px solid black;
+            text-align: center;
+            line-height: 150px;
+            font-family: sans-serif;
+            font-weight: bold;
+            transition: background 0.3s ease, border-radius 0.3s ease;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Div that responds to hover, click, and mouseout events -->
+    <div id="box">Hover or Click Me!</div>
+    <!-- Button to toggle shape and background color -->
+    <button id="toggleBtn">Toggle Shape & Color</button>
+
+    <script>
+        // Select elements
+        const box = document.getElementById("box");
+        const toggleBtn = document.getElementById("toggleBtn");
+
+        // Variable to track shape toggle state
+        let isCircle = false;
+        let isRed = false;
+
+        // Event listener for button click - toggles shape and background color
+        toggleBtn.addEventListener("click", function() {
+            isCircle = !isCircle; // Toggle shape state
+            box.style.borderRadius = isCircle ? "50%" : "0"; // Apply circle or square
+            box.style.backgroundColor = isCircle ? "yellow" : "purple"; // Change background color
+        });
+
+        // Event listener for mouseover - change background to light blue
+        box.addEventListener("mouseover", function() {
+            box.style.backgroundColor = "lightblue";
+        });
+
+        // Event listener for mouseout - revert background to white
+        box.addEventListener("mouseout", function() {
+            box.style.backgroundColor = "white";
+        });
+
+        // Event listener for click - toggle between red and green
+        box.addEventListener("click", function() {
+            isRed = !isRed; // Toggle color state
+            box.style.backgroundColor = isRed ? "red" : "green";
+        });
+    </script>
+</body>
+</html>
