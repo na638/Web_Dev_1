@@ -4,7 +4,23 @@ function addTask() {
     
     if (taskInput.value.trim() !== "") {
         let li = document.createElement("li");
-        li.textContent = taskInput.value;
+        let taskText = document.createElement("span");
+        taskText.textContent = taskInput.value;
+        
+        let editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.style.background = "#f39c12";
+        editBtn.style.border = "none";
+        editBtn.style.padding = "5px 10px";
+        editBtn.style.color = "white";
+        editBtn.style.cursor = "pointer";
+        editBtn.style.borderRadius = "3px";
+        editBtn.onclick = function() {
+            let newTask = prompt("Edit your task:", taskText.textContent);
+            if (newTask !== null && newTask.trim() !== "") {
+                taskText.textContent = newTask;
+            }
+        };
         
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
@@ -18,6 +34,8 @@ function addTask() {
             taskList.removeChild(li);
         };
         
+        li.appendChild(taskText);
+        li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
         taskInput.value = "";
